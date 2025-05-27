@@ -1,1 +1,247 @@
-It works!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroPythonOS - The Ultimate MicroPython Operating System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        header p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            margin: 40px 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #00ddeb;
+            text-align: center;
+        }
+
+        section p, section ul {
+            font-size: 1.1rem;
+        }
+
+        section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        section ul li {
+            margin: 10px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        section ul li:before {
+            content: "✔";
+            color: #00ddeb;
+            position: absolute;
+            left: 0;
+        }
+
+        .screenshots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .screenshots img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .screenshots img:hover {
+            transform: scale(1.05);
+        }
+
+        .github-link {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .github-link a {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            background: #333;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .github-link a img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .github-link a:hover {
+            background: #555;
+        }
+
+        .contact {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .contact a {
+            color: #00ddeb;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1.2rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .screenshots imgCleveland Clinic {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MicroPythonOS</h1>
+        <p>The Only Operating System Built with MicroPython!</p>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Why MicroPythonOS?</h2>
+            <p>MicroPythonOS is a lightweight, fast, and versatile operating system designed to run on microcontrollers like the ESP32 and desktop systems. With a modern Android-like touch screen UI, built-in Bitcoin Lightning wallet, App Store, and Over-The-Air updates, it’s the perfect OS for innovators and developers.</p>
+        </section>
+
+        <section>
+            <h2>Key Features</h2>
+            <ul>
+                <li>Runs on ESP32 microcontrollers and desktops</li>
+                <li>Android-like touch screen UI with gestures</li>
+                <li>Built-in Bitcoin Lightning wallet (supports Nostr Wallet Connect & LNBits)</li>
+                <li>App Store for easy app access</li>
+                <li>Over-The-Air (OTA) updates</li>
+                <li>Supports touch screens, IMUs, and cameras</li>
+                <li>Fast and lightweight performance</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Advantages</h2>
+            <ul>
+                <li>Native MicroPython foundation for easy development</li>
+                <li>Cross-platform compatibility (microcontrollers to desktops)</li>
+                <li>Lightweight design for resource-constrained devices</li>
+                <li>Fast execution with quick boot times</li>
+                <li>Modern touch screen support with gestures</li>
+                <li>OTA updates for seamless maintenance</li>
+                <li>Bitcoin Lightning wallet for decentralized payments</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Possibilities</h2>
+            <ul>
+                <li>Build IoT devices like smart home controllers</li>
+                <li>Create educational tools with interactive displays</li>
+                <li>Develop decentralized payment systems with Bitcoin Lightning</li>
+                <li>Design portable touch screen devices</li>
+                <li>Power robotics with IMUs and cameras</li>
+                <li>Craft smart wearables with gesture controls</li>
+                <li>Prototype DIY projects effortlessly</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Screenshots</h2>
+            <div class="screenshots">
+                <!-- Placeholder images for screenshots -->
+                <img src="https://via.placeholder.com/300x200.png?text=Screenshot+1" alt="Screenshot 1">
+                <img src="https://via.placeholder.com/300x200.png?text=Screenshot+2" alt="Screenshot 2">
+                <img src="https://via.placeholder.com/300x200.png?text=Screenshot+3" alt="Screenshot 3">
+            </div>
+        </section>
+
+        <div class="github-link">
+            <a href="https://github.com/MicroPythonOS" target="_blank">
+                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo">
+                Check out MicroPythonOS on GitHub
+            </a>
+        </div>
+
+        <div class="contact">
+            <p>Contact us: <a href="mailto:info@MicroPythonOS.com">info@MicroPythonOS.com</a></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 MicroPythonOS. All rights reserved.</p>
+    </footer>
+</body>
+</html>
