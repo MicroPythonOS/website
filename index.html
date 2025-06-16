@@ -168,15 +168,16 @@
         /* Screenshots */
         .screenshots {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
             justify-content: center;
         }
 
         .screenshots img {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            height: auto;
+            aspect-ratio: 4 / 3; /* Maintains 320x240 aspect ratio */
+            object-fit: contain; /* Ensures no cropping of borders */
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -308,8 +309,8 @@
                 font-size: 1.8rem;
             }
 
-            .screenshots img {
-                height: 150px;
+            .screenshots {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             }
         }
 
@@ -322,8 +323,8 @@
                 padding: 20px;
             }
 
-            .screenshots img {
-                height: 120px;
+            .screenshots {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -339,7 +340,7 @@
                 <li><a href="https://t.me/MicroPythonOS" target="_blank" aria-label="Join MicroPythonOS Community">Community</a></li>
                 <li><a href="mailto:info@MicroPythonOS.com" target="_blank" aria-label="Contact MicroPythonOS">Contact</a></li>
             </ul>
-            <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
         </div>
     </nav>
 
