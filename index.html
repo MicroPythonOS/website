@@ -173,19 +173,26 @@
             justify-content: center;
         }
 
-        .screenshots img {
+        /* Target both <img> and <video> */
+        .screenshots img,
+        .screenshots video {
             width: 100%;
             height: auto;
-            aspect-ratio: 4 / 3; /* Maintains 320x240 aspect ratio */
-            object-fit: contain; /* Ensures no cropping of borders */
+            aspect-ratio: 4 / 3;           /* Forces 4:3 ratio (e.g. 320x240) */
+            object-fit: contain;           /* Keeps full content visible */
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #000;              /* Prevents flash on video load */
+            display: block;                /* Removes inline spacing */
         }
 
-        .screenshots img:hover {
+        /* Unified hover effect */
+        .screenshots img:hover,
+        .screenshots video:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
         }
 
         /* GitHub Link */
@@ -374,7 +381,7 @@
                 <img src="screenshots/light/0.0.6/mpos_camera_qr_320x240.png" alt="Camera QR Code Screenshot"/>
                 <img src="screenshots/light/0.0.6/osupdate_progress3.png" alt="OS Update Progress Screenshot"/>
                 <img src="screenshots/dark/0.0.4/0.0.4_launcher1.png" alt="Dark Theme Launcher Screenshot"/>
-                <img src="screenshots/dark/0.0.4/0.0.4_drawer.png" alt="Dark Theme Drawer Screenshot"/>
+                <video autoplay loop muted playsinline poster="screenshots/light/0.3.2/com.quasikili.quasibird_0.0.3.png" width="320" height="240" preload="auto" loading="lazy"><source src="videos/QuasiBird_0.0.3.mp4" type="video/mp4"><img src="screenshots/light/0.3.2/com.quasikili.quasibird_0.0.3.png" alt="QuasiBird game in action"></video>
                 <img src="screenshots/dark/0.0.4/0.0.4_wifi_password.png" alt="Dark Theme WiFi Password Screenshot"/>
                 <img src="screenshots/dark/0.0.4/0.0.4_appstore_uninstall_draw.png" alt="Dark Theme App Store Uninstall Screenshot"/>
                 <img src="screenshots/dark/0.0.4/0.0.4_imu1.png" alt="Dark Theme IMU Screenshot"/>
