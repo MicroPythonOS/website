@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MicroPythonOS - The Ultimate MicroPython Operating System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="images/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="images/favicon-64x64.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512x512.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -40,9 +47,36 @@
         }
 
         nav .logo {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.5rem;
-            color: #F8EDE3;
+            /* font-family: 'Poppins', sans-serif; */
+            /* font-size: 1.5rem; */
+            /* color: #F8EDE3; */
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        
+        nav .logo img {
+            height: 50px; /* Adjusted for 10-20% bigger */
+            width: auto;
+        }
+        
+        header .logo-header {
+            height: 120px; /* Adjusted for even bigger in header */
+            width: auto;
+            margin-bottom: 15px;
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @media (max-width: 768px) {
+            nav .logo img {
+                height: 40px; /* Smaller on mobile */
+                width: 100%;
+            }
+        
+            header .logo-header {
+                height: 80px; /* Smaller on mobile */
+                width: 100%;
+            }
         }
 
         nav ul {
@@ -104,6 +138,7 @@
             font-weight: 500;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: fadeIn 1s ease-in 0.6s both;
+            margin: 5px;
         }
 
         .cta-button:hover {
@@ -214,9 +249,11 @@
         }
 
         .github-link a img {
-            width: 24px;
-            height: 24px;
+            width: 36px;
+            height: 36px;
             margin-right: 10px;
+            filter: invert(1);
+            mix-blend-mode:lighten;
         }
 
         .github-link a:hover {
@@ -339,7 +376,7 @@
     <!-- Navigation Menu -->
     <nav>
         <div class="nav-container">
-            <div class="logo">MicroPythonOS</div>
+            <div class="logo"><img src="images/MicroPythonOS-logo-white(alpha)-long.svg" alt="MicroPythonOS Logo"></div>
             <ul id="nav-links">
                 <li><a href="https://install.micropythonos.com/" target="_blank" aria-label="Install MicroPythonOS">Install</a></li>
                 <li><a href="https://github.com/MicroPythonOS/MicroPythonOS/releases" target="_blank" aria-label="Download MicroPythonOS">Download</a></li>
@@ -353,7 +390,8 @@
 
     <!-- Header -->
     <header>
-        <h1>MicroPythonOS</h1>
+        <!-- <h1>MicroPythonOS</h1> -->
+        <img src="images/MicroPythonOS-logo-white(alpha)-long.svg" alt="MicroPythonOS Logo" class="logo-header">
         <p>The Only Operating System Built with MicroPython!</p>
         <a href="https://docs.micropythonos.com/" target="_blank" class="cta-button">Documentation</a>
         <a href="https://install.micropythonos.com/" target="_blank" class="cta-button">Installation</a>
