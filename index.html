@@ -77,6 +77,46 @@
                 height: 80px; /* Smaller on mobile */
                 width: 100%;
             }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: #0A4D68;
+                padding: 20px;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1.2rem;
+            }
+
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .screenshots {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
         }
 
         nav ul {
@@ -398,48 +438,6 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background: #0A4D68;
-                padding: 20px;
-            }
-
-            nav ul.active {
-                display: flex;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            header h1 {
-                font-size: 2.5rem;
-            }
-
-            header p {
-                font-size: 1.2rem;
-            }
-
-            .cta-button {
-                padding: 10px 20px;
-                font-size: 1rem;
-            }
-
-            section h2 {
-                font-size: 1.8rem;
-            }
-
-            .screenshots {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            }
-        }
-
         @media (max-width: 480px) {
             header h1 {
                 font-size: 2rem;
@@ -465,7 +463,7 @@
                 <li><a href="https://github.com/MicroPythonOS/MicroPythonOS/releases" target="_blank" aria-label="Download MicroPythonOS">Download</a></li>
                 <li><a href="https://chat.MicroPythonOS.com" target="_blank" aria-label="Community Chat">Community</a></li>
                 <li><a href="https://docs.MicroPythonOS.com" target="_blank" aria-label="Documentation">Documentation</a></li>
-                <li><a href="mailto:info@MicroPythonOS.com" target="_blank" aria-label="Contact MicroPythonOS">Contact</a></li>
+                <li><a href="mailto:info@MicroPythonOS.com" aria-label="Contact MicroPythonOS">Contact</a></li>
             </ul>
             <div class="hamburger" onclick="toggleMenu()">☰</div>
         </div>
@@ -490,6 +488,7 @@
         <section>
             <h2>Screenshots</h2>
             <div class="screenshots">
+                <!-- Adding "data-play-overlay" to the <video/> tags below will show a nice "Play" button instead of autoplay, but for now, autoplay is more fun. -->
                 <!-- <img src="screenshots/light/0.0.6/launcher.png" alt="Launcher Screenshot"/> -->
                 <video autoplay loop muted playsinline poster="screenshots/light/0.7.2/launcher_appstore.png" width="320" height="240" preload="auto">
                     <source src="screenshots/light/0.7.2/launcher-2026-01-28_19.19.21.mp4" type="video/mp4">
@@ -524,13 +523,14 @@
                 <!-- <img src="screenshots/light/0.0.6/mpos_camera_qr_320x240.png" alt="Camera QR Code Screenshot"/> -->
                 <img src="screenshots/light/0.7.2/camera_qr_code.png" alt="Camera QR Code Screenshot"/>
 
+
+
                 <!-- <img src="screenshots/light/0.0.6/osupdate_progress3.png" alt="OS Update Progress Screenshot"/> -->
                 <video autoplay loop muted playsinline poster="screenshots/light/0.7.2/osupdate_67.png" width="320" height="240" preload="auto">
                     <source src="screenshots/light/0.7.2/osupdate-2026-01-28_19.39.18_cut.mp4" type="video/mp4">
                     <img src="screenshots/light/0.7.2/osupdate_67.png" alt="MicroPythonOS AppStore">
                 </video>
                 <!-- <img src="screenshots/dark/0.0.4/0.0.4_launcher1.png" alt="Dark Theme Launcher Screenshot"/> -->
-
                 <img src="screenshots/light/0.0.6/image_viewer.png" alt="Image Viewer Screenshot"/>
                 <img src="screenshots/dark/0.3.3/wifi_password.png" alt="Dark Theme WiFi Password Screenshot"/>
                 <!-- <img src="screenshots/dark/0.0.4/0.0.4_appstore_uninstall_draw.png" alt="Dark Theme App Store Uninstall Screenshot"/> -->
@@ -600,7 +600,7 @@
         <div class="social-links">
             <a href="https://chat.MicroPythonOS.com" target="_blank">Community Chat</a> |
             <a href="https://github.com/MicroPythonOS" target="_blank">GitHub</a> |
-            <a href="mailto:info@MicroPythonOS.com" target="_blank">Email</a>
+            <a href="mailto:info@MicroPythonOS.com">Email</a>
         </div>
     </footer>
 
