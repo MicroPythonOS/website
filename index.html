@@ -78,45 +78,6 @@
                 width: 100%;
             }
 
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background: #0A4D68;
-                padding: 20px;
-            }
-
-            nav ul.active {
-                display: flex;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            header h1 {
-                font-size: 2.5rem;
-            }
-
-            header p {
-                font-size: 1.2rem;
-            }
-
-            .cta-button {
-                padding: 10px 20px;
-                font-size: 1rem;
-            }
-
-            section h2 {
-                font-size: 1.8rem;
-            }
-
-            .screenshots {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            }
         }
 
         nav ul {
@@ -438,6 +399,48 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: #0A4D68;
+                padding: 20px;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1.2rem;
+            }
+
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .screenshots {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
         @media (max-width: 480px) {
             header h1 {
                 font-size: 2rem;
