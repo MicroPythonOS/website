@@ -538,19 +538,25 @@
             gap: 10px;
         }
 
-        #supported-hardware .prev-button, #supported-hardware .next-button {
+#supported-hardware .prev-button, #supported-hardware .next-button {
             background: #0A4D68;
             color: #fff;
             border: none;
-            padding: 10px 15px;
+            width: 40px; /* Set a fixed width */
+            height: 40px; /* Set a fixed height, equal to width for perfect circle */
+            padding: 0; /* Remove padding to allow width/height to control size */
             border-radius: 50%;
             cursor: pointer;
             font-size: 1.2rem;
+            display: flex; /* Use flexbox for centering content */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             z-index: 999;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0; /* Prevent buttons from shrinking */
         }
 
         #supported-hardware .prev-button {
@@ -802,14 +808,14 @@
                         <p>Fully Supported</p>
                         <a href="https://fri3d.be/badge/2024/?ref=MicroPythonOS.com" target="_blank">Learn More</a>
                     </div>
+                    <div class="slide">
+                        <img src="supported_devices/lilygo_t_display_s3.webp" alt="Lilygo T-Display S3">
+                        <h3>Lilygo T-Display S3</h3>
+                        <a href="https://lilygo.cc/products/t-display-s3" target="_blank">Learn More</a>
+                    </div>
                     <div class="slide coming-soon">
                         <img src="supported_devices/fri3d_2026.webp" alt="Fri3d Camp 2026 Badge">
                         <h3>Fri3d Camp 2026 Badge</h3>
-                        <p>Coming Soon</p>
-                    </div>
-                    <div class="slide coming-soon">
-                        <img src="supported_devices/lilygo_t_display_s3.webp" alt="Lilygo T-Display S3">
-                        <h3>Lilygo T-Display S3</h3>
                         <p>Coming Soon</p>
                     </div>
                     <div class="slide coming-soon">
