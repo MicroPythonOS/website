@@ -548,6 +548,27 @@
                 margin: 10px auto;
             }
         }
+
+        /* Coming Soon Styling */
+        #supported-hardware .slide.coming-soon {
+            opacity: 0.6;
+            filter: grayscale(70%);
+            transition: opacity 0.3s ease, filter 0.3s ease;
+        }
+
+        #supported-hardware .slide.coming-soon:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+        #supported-hardware .slide.coming-soon h3,
+        #supported-hardware .slide.coming-soon p {
+            color: #888;
+        }
+
+        #supported-hardware .slide.coming-soon a {
+            display: none; /* Hide "Learn More" button for coming soon items */
+        }
     </style>
 </head>
 <body>
@@ -675,37 +696,37 @@
                         <p>Fully Supported</p>
                         <a href="https://fri3d.be/badge/2024/?ref=micropythonos.com" target="_blank">Learn More</a>
                     </div>
-                    <div class="slide">
+                    <div class="slide coming-soon">
                         <img src="supported_devices/fri3d_2026.webp" alt="Fri3d Camp 2026 Badge">
                         <h3>Fri3d Camp 2026 Badge</h3>
                         <p>Coming Soon</p>
                     </div>
-                    <div class="slide">
+                    <div class="slide coming-soon">
                         <img src="supported_devices/lilygo_t_display_s3.webp" alt="Lilygo T-Display S3">
                         <h3>Lilygo T-Display S3</h3>
                         <p>Coming Soon</p>
                     </div>
-                    <div class="slide">
+                    <div class="slide coming-soon">
                         <img src="supported_devices/lilygo_t_watch_s3.webp" alt="Lilygo T-Watch S3">
                         <h3>Lilygo T-Watch S3</h3>
                         <p>Coming Soon</p>
                     </div>
-                    <div class="slide">
+                    <div class="slide coming-soon">
                         <img src="supported_devices/lilygo_t_watch_s3_plus.webp" alt="Lilygo T-Watch S3 Plus">
                         <h3>Lilygo T-Watch S3 Plus</h3>
                         <p>Coming Soon</p>
                     </div>
-                    <div class="slide">
+                    <div class="slide coming-soon">
                         <img src="supported_devices/lilygo_t_watch_ultra.webp" alt="Lilygo T-Watch Ultra">
                         <h3>Lilygo T-Watch Ultra</h3>
                         <p>Coming Soon</p>
                     </div>
-                    <div class="slide">
+                    <div class="slide coming-soon">
                         <img src="supported_devices/matouch_esp32_s3_parallel_ips_with_touch_2_8.webp" alt="Matouch ESP32-S3 Parallel IPS with Touch 2.8">
                         <h3>Matouch ESP32-S3 Parallel IPS with Touch 2.8</h3>
                         <p>Coming Soon</p>
                     </div>
-                    <div class="slide">
+                    <div class="slide coming-soon">
                         <img src="supported_devices/your_device.webp" alt="Your Device">
                         <h3>Your Device</h3>
                         <p>Coming Soon</p>
@@ -760,8 +781,11 @@
             const showAllButton = document.getElementById('show-all-button');
             const sliderDots = document.querySelector('#supported-hardware .slider-dots');
             const slides = document.querySelectorAll('#supported-hardware .slide');
+            const sliderContainer = document.querySelector('#supported-hardware .slider-container');
 
             let slideIndex = 0;
+            let autoScrollInterval;
+            const autoScrollDelay = 1500; // 3 seconds
 
             const createDots = () => {
                 sliderDots.innerHTML = '';
@@ -773,6 +797,7 @@
                     }
                     dot.addEventListener('click', () => {
                         goToSlide(i);
+                        pauseAutoScroll();
                     });
                     sliderDots.appendChild(dot);
                 }
@@ -795,17 +820,31 @@
                 });
             };
 
+            const startAutoScroll = () => {
+                autoScrollInterval = setInterval(() => {
+                    slideIndex = (slideIndex + 1) % slides.length;
+                    goToSlide(slideIndex);
+                }, autoScrollDelay);
+            };
+
+            const pauseAutoScroll = () => {
+                clearInterval(autoScrollInterval);
+            };
+
             prevButton.addEventListener('click', () => {
-                if (slideIndex > 0) {
-                    goToSlide(slideIndex - 1);
-                }
+                slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+                goToSlide(slideIndex);
+                pauseAutoScroll();
             });
 
             nextButton.addEventListener('click', () => {
-                if (slideIndex < slides.length - 1) {
-                    goToSlide(slideIndex + 1);
-                }
+                slideIndex = (slideIndex + 1) % slides.length;
+                goToSlide(slideIndex);
+                pauseAutoScroll();
             });
+
+            sliderContainer.addEventListener('mouseenter', pauseAutoScroll);
+            sliderContainer.addEventListener('mouseleave', startAutoScroll);
 
             showAllButton.addEventListener('click', () => {
                 slider.classList.toggle('grid-view');
@@ -814,17 +853,20 @@
                     prevButton.style.display = 'none';
                     nextButton.style.display = 'none';
                     sliderDots.style.display = 'none';
+                    pauseAutoScroll();
                 } else {
                     showAllButton.textContent = 'Show All Devices';
                     prevButton.style.display = 'block';
                     nextButton.style.display = 'block';
                     sliderDots.style.display = 'flex';
                     goToSlide(slideIndex); // Recenter slider after switching back
+                    startAutoScroll();
                 }
             });
 
             createDots();
             goToSlide(0); // Initialize slider position
+            startAutoScroll(); // Start auto-scrolling on load
         });
     </script>
 </body>
