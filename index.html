@@ -498,6 +498,21 @@
             background-color: #717171;
         }
 
+        #supported-hardware .show-all-button {
+            background: none;
+            border: none;
+            color: #0A4D68;
+            font-size: 1.1rem;
+            text-decoration: underline;
+            cursor: pointer;
+            padding: 0;
+            transition: color 0.3s ease;
+        }
+
+        #supported-hardware .show-all-button:hover {
+            color: #FF6B6B;
+        }
+
         #supported-hardware .call-to-action {
             text-align: center;
             margin-top: 30px;
@@ -506,13 +521,20 @@
         }
 
         #supported-hardware .call-to-action a {
-            color: #FF6B6B;
+            display: inline-block;
+            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+            color: #F8EDE3;
+            padding: 12px 24px;
             text-decoration: none;
+            border-radius: 25px;
             font-weight: 500;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 5px;
         }
 
         #supported-hardware .call-to-action a:hover {
-            text-decoration: underline;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
         }
 
         /* Grid View */
@@ -625,42 +647,7 @@
             </div>
         </section>
 
-        <section>
-            <h2>Key Features</h2>
-            <ul>
-                <li>Runs on ESP32 microcontrollers and desktops</li>
-                <li>Android-like touch screen UI with gestures</li>
-                <li>App Store for easy app access</li>
-                <li>Over-The-Air (OTA) updates</li>
-                <li>Supports touch screens, IMUs, and cameras</li>
-                <li>Fast and lightweight performance</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Advantages</h2>
-            <ul>
-                <li>Native MicroPython foundation for easy development</li>
-                <li>Cross-platform compatibility (microcontrollers to desktops)</li>
-                <li>Lightweight design for resource-constrained devices</li>
-                <li>Fast execution with quick boot times</li>
-                <li>Modern touch screen support with gestures</li>
-                <li>OTA updates for seamless maintenance</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Possibilities</h2>
-            <ul>
-                <li>Build IoT devices like smart home controllers</li>
-                <li>Create educational tools with interactive displays</li>
-                <li>Develop decentralized payment systems with Bitcoin Lightning</li>
-                <li>Design portable touch screen devices</li>
-                <li>Power robotics with IMUs and cameras</li>
-                <li>Craft smart wearables with gesture controls</li>
-                <li>Prototype DIY projects effortlessly</li>
-            </ul>
-        </section>
+        
         <section id="supported-hardware">
             <h2>Supported Hardware</h2>
             <div class="slider-container">
@@ -737,11 +724,47 @@
                 <div class="slider-dots"></div>
             </div>
             <div class="slider-controls">
-                <button id="show-all-button" class="cta-button">Show All Devices</button>
+                <button id="show-all-button" class="show-all-button">Show as grid</button>
             </div>
-            <p class="call-to-action">Want your board supported? <a href="mailto:info@MicroPythonOS.com">Email us</a> to get in touch!</p>
+            <p class="call-to-action">Want your board supported?</p>
+            <p class="call-to-action" > <a href="mailto:info@MicroPythonOS.com">Email us!</a></p>
+        </section>
+        <section>
+            <h2>Key Features</h2>
+            <ul>
+                <li>Runs on ESP32 microcontrollers and desktops</li>
+                <li>Android-like touch screen UI with gestures</li>
+                <li>App Store for easy app access</li>
+                <li>Over-The-Air (OTA) updates</li>
+                <li>Supports touch screens, IMUs, and cameras</li>
+                <li>Fast and lightweight performance</li>
+            </ul>
         </section>
 
+        <section>
+            <h2>Advantages</h2>
+            <ul>
+                <li>Native MicroPython foundation for easy development</li>
+                <li>Cross-platform compatibility (microcontrollers to desktops)</li>
+                <li>Lightweight design for resource-constrained devices</li>
+                <li>Fast execution with quick boot times</li>
+                <li>Modern touch screen support with gestures</li>
+                <li>OTA updates for seamless maintenance</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Possibilities</h2>
+            <ul>
+                <li>Build IoT devices like smart home controllers</li>
+                <li>Create educational tools with interactive displays</li>
+                <li>Develop decentralized payment systems with Bitcoin Lightning</li>
+                <li>Design portable touch screen devices</li>
+                <li>Power robotics with IMUs and cameras</li>
+                <li>Craft smart wearables with gesture controls</li>
+                <li>Prototype DIY projects effortlessly</li>
+            </ul>
+        </section>
         <div class="github-link">
             <a href="https://github.com/MicroPythonOS" target="_blank">
                 <img src="images/GitHub-Mark.png" alt="GitHub Logo">
