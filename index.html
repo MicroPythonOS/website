@@ -164,6 +164,21 @@
             animation: fadeInUp 1s ease-in;
         }
 
+        .highlight-section {
+            background: #e0f7fa; /* Light blue background */
+            padding: 10px ; /* More padding */
+            margin: 10px ; /* More margin */
+            border: 2px solid #00bcd4; /* Cyan border */
+            box-shadow: 0 8px 25px rgba(0, 188, 212, 0.2); /* Enhanced shadow */
+        }
+        .highlight-section section{
+            margin: 10px;
+        }
+        .highlight-section section{
+            margin: 10px;
+            text-align: center;
+        }
+
         section h2 {
             font-family: 'Poppins', sans-serif;
             font-size: 2.2rem;
@@ -603,14 +618,14 @@
             color: #FF6B6B;
         }
 
-        #supported-hardware .call-to-action {
+        .call-to-action {
             text-align: center;
             margin-top: 30px;
             font-size: 1.1rem;
             color: #1A2E44;
         }
 
-        #supported-hardware .call-to-action a {
+        .call-to-action a {
             display: inline-block;
             background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
             color: #F8EDE3;
@@ -622,7 +637,7 @@
             margin: 5px;
         }
 
-        #supported-hardware .call-to-action a:hover {
+        .call-to-action a:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
         }
@@ -852,9 +867,20 @@
             <div class="slider-controls">
                 <button id="show-all-button" class="show-all-button">Show as grid</button>
             </div>
-            <p class="call-to-action">Want your board supported?</p>
-            <p class="call-to-action" > <a href="mailto:info@MicroPythonOS.com">Email us!</a></p>
         </section>
+        
+        <section class="highlight-section">
+            <section>
+                <h2>Custom App?</h2>
+                <h2>Device Support?</h2>
+                <p>&nbsp;</p>
+                <p class="center">Want us to make a custom app?</p>
+                <p>&nbsp;</p>
+                <p>Want your device supported?</p>
+                <p class="call-to-action" > <a href="mailto:info@MicroPythonOS.com">Email us!</a></p>
+               </section>
+        </section>
+
         <section>
             <h2>Key Features</h2>
             <ul>
@@ -1100,3 +1126,4 @@
     </script>
 </body>
 </html>
+
