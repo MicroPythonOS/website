@@ -164,6 +164,21 @@
             animation: fadeInUp 1s ease-in;
         }
 
+        .highlight-section {
+            background: #e0f7fa; /* Light blue background */
+            padding: 10px ; /* More padding */
+            margin: 10px ; /* More margin */
+            border: 2px solid #00bcd4; /* Cyan border */
+            box-shadow: 0 8px 25px rgba(0, 188, 212, 0.2); /* Enhanced shadow */
+        }
+        .highlight-section section{
+            margin: 10px;
+        }
+        .highlight-section section{
+            margin: 10px;
+            text-align: center;
+        }
+
         section h2 {
             font-family: 'Poppins', sans-serif;
             font-size: 2.2rem;
@@ -454,6 +469,233 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Supported Hardware Slider */
+        #supported-hardware .slider-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 30px;
+        }
+
+        #supported-hardware .slider {
+            display: flex;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+            -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+        }
+
+        #supported-hardware .slider::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+        }
+
+        #supported-hardware .slide {
+            flex: 0 0 auto;
+            width: 300px; /* Adjust as needed */
+            margin: 10px;
+            scroll-snap-align: start;
+            text-align: center;
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #supported-hardware .slide img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #supported-hardware .slide h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            color: #0A4D68;
+        }
+
+        #supported-hardware .slide p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        #supported-hardware .slide a {
+            display: inline-block;
+            background: #FF6B6B;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        #supported-hardware .slide a:hover {
+            background: #FF8E8E;
+        }
+
+        #supported-hardware .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+#supported-hardware .prev-button, #supported-hardware .next-button {
+            background: #0A4D68;
+            color: #fff;
+            border: none;
+            width: 40px; /* Set a fixed width */
+            height: 40px; /* Set a fixed height, equal to width for perfect circle */
+            padding: 0; /* Remove padding to allow width/height to control size */
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex; /* Use flexbox for centering content */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0; /* Prevent buttons from shrinking */
+        }
+
+        #supported-hardware .prev-button {
+            left: 10px;
+        }
+
+        #supported-hardware .next-button {
+            right: 10px;
+        }
+
+        #supported-hardware .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        #supported-hardware .dot {
+            height: 10px;
+            width: 10px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #supported-hardware .dot.active {
+            background-color: #717171;
+        }
+
+        #supported-hardware .show-all-button {
+            background: none;
+            border: none;
+            color: #0A4D68;
+            font-size: 1.1rem;
+            text-decoration: underline;
+            cursor: pointer;
+            padding: 0;
+            transition: color 0.3s ease;
+        }
+
+        #supported-hardware .show-all-button:hover {
+            color: #FF6B6B;
+        }
+
+        .call-to-action {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.1rem;
+            color: #1A2E44;
+        }
+
+        .call-to-action a {
+            display: inline-block;
+            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+            color: #F8EDE3;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 5px;
+        }
+
+        .call-to-action a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Grid View */
+        #supported-hardware .slider.grid-view {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            overflow-x: hidden;
+            scroll-snap-type: none;
+        }
+
+        #supported-hardware .slider.grid-view .slide {
+            width: auto;
+            margin: 0;
+        }
+
+        #supported-hardware .slider.grid-view ~ .prev-button,
+        #supported-hardware .slider.grid-view ~ .next-button,
+        #supported-hardware .slider.grid-view ~ .slider-dots {
+            display: none;
+        }
+
+        /* Responsive adjustments for slider */
+        @media (max-width: 768px) {
+            #supported-hardware .slide {
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #supported-hardware .slide {
+                width: 90%; /* Almost full width on very small screens */
+                margin: 10px auto;
+            }
+        }
+
+        /* Coming Soon Styling */
+        #supported-hardware .slide.coming-soon {
+            opacity: 0.6;
+            filter: grayscale(70%);
+            transition: opacity 0.3s ease, filter 0.3s ease;
+        }
+
+        #supported-hardware .slide.coming-soon:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+        #supported-hardware .slide.coming-soon h3,
+        #supported-hardware .slide.coming-soon p {
+            color: #888;
+        }
+
+        #supported-hardware .slide.coming-soon a {
+            display: none; /* Hide "Learn More" button for coming soon items */
+        }
     </style>
 </head>
 <body>
@@ -545,6 +787,100 @@
             </div>
         </section>
 
+        
+        <section id="supported-hardware">
+            <h2>Supported Hardware</h2>
+            <div class="slider-container">
+                <div class="slider">
+                    <div class="slide">
+                        <img src="supported_devices/waveshare_esp32_s3_touch_lcd_2.webp" alt="Waveshare ESP32-S3-Touch-LCD-2">
+                        <h3>Waveshare ESP32-S3-Touch-LCD-2</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-2?ref=MicroPythonOS.com" target="_blank">Learn More</a>
+                    </div>
+                    <div class="slide">
+                        <img src="supported_devices/m5stack_fire.webp" alt="M5Stack Fire">
+                        <h3>M5Stack Fire</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://docs.m5stack.com/en/core/fire?ref=MicroPythonOS.com" target="_blank">Learn More</a>
+                       </div>
+                    <div class="slide">
+                        <img src="supported_devices/odroid_go.webp" alt="ODROID-Go">
+                        <h3>ODROID-Go</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://wiki.odroid.com/odroid_go/odroid_go?ref=MicroPythonOS.com" target="_blank">Learn More</a>
+                        
+                    </div>
+                    <div class="slide">
+                        <img src="supported_devices/matouch_esp32_s3_spi_ips_2_8_with_camera_ov3660.webp" alt="Matouch ESP32-S3 SPI IPS 2.8 with Camera OV3660">
+                        <h3>Matouch ESP32-S3 SPI IPS 2.8 with Camera OV3660</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://www.makerfabs.com/matouch-esp32-s3-spi-ips-2-8-with-camera-ov3660.html?ref=MicroPythonOS.com" target="_blank">Learn More</a>                        
+                    </div>
+                    <div class="slide">
+                        <img src="supported_devices/fri3d_2024.webp" alt="Fri3d Camp 2024 Badge">
+                        <h3>Fri3d Camp 2024 Badge</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://fri3d.be/badge/2024/?ref=MicroPythonOS.com" target="_blank">Learn More</a>
+                    </div>
+                    <div class="slide">
+                        <img src="supported_devices/lilygo_t_display_s3.webp" alt="Lilygo T-Display S3">
+                        <h3>Lilygo T-Display S3</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://lilygo.cc/products/t-display-s3" target="_blank">Learn More</a>
+                    </div>
+                    <div class="slide coming-soon">
+                        <img src="supported_devices/fri3d_2026.webp" alt="Fri3d Camp 2026 Badge">
+                        <h3>Fri3d Camp 2026 Badge</h3>
+                        <p>Coming Soon</p>
+                    </div>
+                    <div class="slide coming-soon">
+                        <img src="supported_devices/lilygo_t_watch_s3.webp" alt="Lilygo T-Watch S3">
+                        <h3>Lilygo T-Watch S3</h3>
+                        <p>Coming Soon</p>
+                    </div>
+                    <div class="slide coming-soon">
+                        <img src="supported_devices/lilygo_t_watch_s3_plus.webp" alt="Lilygo T-Watch S3 Plus">
+                        <h3>Lilygo T-Watch S3 Plus</h3>
+                        <p>Coming Soon</p>
+                    </div>
+                    <div class="slide coming-soon">
+                        <img src="supported_devices/lilygo_t_watch_ultra.webp" alt="Lilygo T-Watch Ultra">
+                        <h3>Lilygo T-Watch Ultra</h3>
+                        <p>Coming Soon</p>
+                    </div>
+                    <div class="slide coming-soon">
+                        <img src="supported_devices/matouch_esp32_s3_parallel_ips_with_touch_2_8.webp" alt="Matouch ESP32-S3 Parallel IPS with Touch 2.8">
+                        <h3>Matouch ESP32-S3 Parallel IPS with Touch 2.8</h3>
+                        <p>Coming Soon</p>
+                    </div>
+                    <div class="slide coming-soon">
+                        <img src="supported_devices/your_device.webp" alt="Your Device">
+                        <h3>Your Device</h3>
+                        <p>Coming Soon</p>
+                    </div>
+                </div>
+                <button class="prev-button">❮</button>
+                <button class="next-button">❯</button>
+                <div class="slider-dots"></div>
+            </div>
+            <div class="slider-controls">
+                <button id="show-all-button" class="show-all-button">Show as grid</button>
+            </div>
+        </section>
+        
+        <section class="highlight-section">
+            <section>
+                <h2>Custom App?</h2>
+                <h2>Device Support?</h2>
+                <p>&nbsp;</p>
+                <p class="center">Want us to make a custom app?</p>
+                <p>&nbsp;</p>
+                <p>Want your device supported?</p>
+                <p class="call-to-action" > <a href="mailto:info@MicroPythonOS.com">Email us!</a></p>
+               </section>
+        </section>
+
         <section>
             <h2>Key Features</h2>
             <ul>
@@ -581,7 +917,6 @@
                 <li>Prototype DIY projects effortlessly</li>
             </ul>
         </section>
-
         <div class="github-link">
             <a href="https://github.com/MicroPythonOS" target="_blank">
                 <img src="images/GitHub-Mark.png" alt="GitHub Logo">
@@ -613,6 +948,181 @@
             const navLinks = document.getElementById('nav-links');
             navLinks.classList.toggle('active');
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const slider = document.querySelector('#supported-hardware .slider');
+            const prevButton = document.querySelector('#supported-hardware .prev-button');
+            const nextButton = document.querySelector('#supported-hardware .next-button');
+            const showAllButton = document.getElementById('show-all-button');
+            const sliderDots = document.querySelector('#supported-hardware .slider-dots');
+            const slides = document.querySelectorAll('#supported-hardware .slide');
+            const sliderContainer = document.querySelector('#supported-hardware .slider-container');
+
+            let slideIndex = 0;
+            let autoScrollInterval;
+            const autoScrollDelay = 1500; // 3 seconds
+
+            const createDots = () => {
+                sliderDots.innerHTML = '';
+                for (let i = 0; i < slides.length; i++) {
+                    const dot = document.createElement('span');
+                    dot.classList.add('dot');
+                    if (i === slideIndex) {
+                        dot.classList.add('active');
+                    }
+                    dot.addEventListener('click', () => {
+                        goToSlide(i);
+                        pauseAutoScroll();
+                    });
+                    sliderDots.appendChild(dot);
+                }
+            };
+
+            const goToSlide = (index) => {
+                slideIndex = index;
+                slider.scrollLeft = slides[slideIndex].offsetLeft - slider.offsetLeft;
+                updateDots();
+            };
+
+            const updateDots = () => {
+                const dots = document.querySelectorAll('#supported-hardware .dot');
+                dots.forEach((dot, index) => {
+                    if (index === slideIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            };
+
+            const startAutoScroll = () => {
+                autoScrollInterval = setInterval(() => {
+                    slideIndex = (slideIndex + 1) % slides.length;
+                    goToSlide(slideIndex);
+                }, autoScrollDelay);
+            };
+
+            const pauseAutoScroll = () => {
+                clearInterval(autoScrollInterval);
+            };
+
+            prevButton.addEventListener('click', () => {
+                slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+                goToSlide(slideIndex);
+                pauseAutoScroll();
+            });
+
+            nextButton.addEventListener('click', () => {
+                slideIndex = (slideIndex + 1) % slides.length;
+                goToSlide(slideIndex);
+                pauseAutoScroll();
+            });
+
+            sliderContainer.addEventListener('mouseenter', pauseAutoScroll);
+            sliderContainer.addEventListener('mouseleave', startAutoScroll);
+
+            showAllButton.addEventListener('click', () => {
+                slider.classList.toggle('grid-view');
+                if (slider.classList.contains('grid-view')) {
+                    showAllButton.textContent = 'Show Slider';
+                    prevButton.style.display = 'none';
+                    nextButton.style.display = 'none';
+                    sliderDots.style.display = 'none';
+                    pauseAutoScroll();
+                } else {
+                    showAllButton.textContent = 'Show All Devices';
+                    prevButton.style.display = 'block';
+                    nextButton.style.display = 'block';
+                    sliderDots.style.display = 'flex';
+                    goToSlide(slideIndex); // Recenter slider after switching back
+                    startAutoScroll();
+                }
+            });
+
+            createDots();
+            goToSlide(0); // Initialize slider position
+            startAutoScroll(); // Start auto-scrolling on load
+        });
+    </script>
+
+    <!--
+      =========================================================================
+      Generic Video Play Overlay Script
+      =========================================================================
+      Automatically initializes play overlays for all <video data-play-overlay>
+      elements. The script:
+        1. Wraps each video in a .video-overlay-container
+        2. Injects a .video-play-overlay button with a CSS play icon
+        3. Handles click, Enter, and Space to play the video
+        4. Shows native controls after playback starts
+        5. Re-shows the overlay when the video ends (for replay)
+
+      To opt-in a new video, simply add the data-play-overlay attribute:
+        <video data-play-overlay poster="thumb.png" ...>
+          <source src="video.mp4" type="video/mp4">
+        </video>
+      =========================================================================
+    -->
+    <script>
+        (function initVideoPlayOverlays() {
+            // Prevent double-initialization
+            if (window.__videoPlayOverlaysInitialized) return;
+            window.__videoPlayOverlaysInitialized = true;
+
+            const videos = document.querySelectorAll('video[data-play-overlay]');
+            if (!videos.length) return;
+
+            videos.forEach(function(video) {
+                // Remove autoplay to ensure video doesn't start on page load
+                video.removeAttribute('autoplay');
+
+                // Create container wrapper
+                const container = document.createElement('div');
+                container.className = 'video-overlay-container';
+
+                // Insert container before video, then move video inside
+                video.parentNode.insertBefore(container, video);
+                container.appendChild(video);
+
+                // Create overlay button
+                const overlay = document.createElement('div');
+                overlay.className = 'video-play-overlay';
+                overlay.setAttribute('tabindex', '0');
+                overlay.setAttribute('role', 'button');
+                overlay.setAttribute('aria-label', 'Play video');
+
+                // Create play icon (CSS-styled circle + triangle)
+                const playIcon = document.createElement('div');
+                playIcon.className = 'play-icon';
+                overlay.appendChild(playIcon);
+
+                // Insert overlay into container
+                container.appendChild(overlay);
+
+                // Activation handler: play video, hide overlay, show controls
+                function activateVideo() {
+                    video.play();
+                    overlay.classList.add('hidden');
+                    video.controls = true;
+                }
+
+                // Click handler
+                overlay.addEventListener('click', activateVideo);
+
+                // Keyboard handler (Enter or Space)
+                overlay.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        activateVideo();
+                    }
+                });
+
+                // When video ends, show overlay again for replay
+                video.addEventListener('ended', function() {
+                    overlay.classList.remove('hidden');
+                });
+            });
+        })();
     </script>
 
     <!--
@@ -696,3 +1206,4 @@
     </script>
 </body>
 </html>
+
