@@ -1124,6 +1124,86 @@
             });
         })();
     </script>
+
+    <!--
+      =========================================================================
+      Generic Video Play Overlay Script
+      =========================================================================
+      Automatically initializes play overlays for all <video data-play-overlay>
+      elements. The script:
+        1. Wraps each video in a .video-overlay-container
+        2. Injects a .video-play-overlay button with a CSS play icon
+        3. Handles click, Enter, and Space to play the video
+        4. Shows native controls after playback starts
+        5. Re-shows the overlay when the video ends (for replay)
+
+      To opt-in a new video, simply add the data-play-overlay attribute:
+        <video data-play-overlay poster="thumb.png" ...>
+          <source src="video.mp4" type="video/mp4">
+        </video>
+      =========================================================================
+    -->
+    <script>
+        (function initVideoPlayOverlays() {
+            // Prevent double-initialization
+            if (window.__videoPlayOverlaysInitialized) return;
+            window.__videoPlayOverlaysInitialized = true;
+
+            const videos = document.querySelectorAll('video[data-play-overlay]');
+            if (!videos.length) return;
+
+            videos.forEach(function(video) {
+                // Remove autoplay to ensure video doesn't start on page load
+                video.removeAttribute('autoplay');
+
+                // Create container wrapper
+                const container = document.createElement('div');
+                container.className = 'video-overlay-container';
+
+                // Insert container before video, then move video inside
+                video.parentNode.insertBefore(container, video);
+                container.appendChild(video);
+
+                // Create overlay button
+                const overlay = document.createElement('div');
+                overlay.className = 'video-play-overlay';
+                overlay.setAttribute('tabindex', '0');
+                overlay.setAttribute('role', 'button');
+                overlay.setAttribute('aria-label', 'Play video');
+
+                // Create play icon (CSS-styled circle + triangle)
+                const playIcon = document.createElement('div');
+                playIcon.className = 'play-icon';
+                overlay.appendChild(playIcon);
+
+                // Insert overlay into container
+                container.appendChild(overlay);
+
+                // Activation handler: play video, hide overlay, show controls
+                function activateVideo() {
+                    video.play();
+                    overlay.classList.add('hidden');
+                    video.controls = true;
+                }
+
+                // Click handler
+                overlay.addEventListener('click', activateVideo);
+
+                // Keyboard handler (Enter or Space)
+                overlay.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        activateVideo();
+                    }
+                });
+
+                // When video ends, show overlay again for replay
+                video.addEventListener('ended', function() {
+                    overlay.classList.remove('hidden');
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
 
