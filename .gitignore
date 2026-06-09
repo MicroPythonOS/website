@@ -1,2 +1,4 @@
 !videos/QuasiBird_0.0.3.mp4
 .DS_Store
+.env
+dist/

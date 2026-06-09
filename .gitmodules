@@ -1,0 +1,6 @@
+[submodule "docs"]
+	path = docs
+	url = https://github.com/MicroPythonOS/docs.git
+[submodule "install"]
+	path = install
+	url = https://github.com/MicroPythonOS/install.git
