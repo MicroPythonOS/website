@@ -64,6 +64,11 @@
 
             <p>A native renderer can now own its own RGB565 surface and present only the rows it actually changed, while LVGL stays the only writer of the panel. On a 320&times;240 badge that took our Breakout demo from <strong>7.6 to 56&nbsp;fps</strong>, with no flicker and no tearing.</p>
 
+            <figure class="article-figure">
+                <img src="../videos/0.22.0/breakout-poster.png" width="320" height="240" alt="Breakout running through the native renderer">
+                <figcaption>Breakout, drawn by the native renderer and presented a band of rows at a time.</figcaption>
+            </figure>
+
             <p>The measurements behind it are in the docs: a full frame is about 25&nbsp;ms of SPI at ~6.2&nbsp;MB/s, so a game is designed around bands of rows rather than whole frames. If you have been waiting for an excuse to port a 2D engine, this is it &mdash; the guide, including the parts that <em>do not</em> work (stealing LVGL's display buffers, pausing its refresh), is in <a href="https://docs.micropythonos.com/apps/native-apps/">Native C/C++ Apps</a>.</p>
 
             <h2 id="audio">Sound from a bare piezo</h2>

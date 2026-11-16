@@ -1027,3 +1027,23 @@
         .plain-list a:hover {
             text-decoration: underline;
         }
+
+        .article-figure {
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .article-figure img {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+            image-rendering: pixelated;
+        }
+
+        .article-figure figcaption {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
