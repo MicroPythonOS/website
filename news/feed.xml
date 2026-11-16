@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MicroPythonOS news</title>
+    <link>https://micropythonos.com/news/</link>
+    <description>Release notes and news for MicroPythonOS.</description>
+    <language>en</language>
+    <atom:link href="https://micropythonos.com/news/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Release 0.22.0: MP3 and video playback</title>
+      <link>https://micropythonos.com/news/0.22.0.html</link>
+      <guid isPermaLink="true">https://micropythonos.com/news/0.22.0.html</guid>
+      <pubDate>Sun, 15 Nov 2026 12:00:00 +0000</pubDate>
+      <description>MicroPythonOS 0.22.0 adds MP3 playback through a native MPEG decoder, pause and seek in both players, sound from a passive piezo buzzer, native games at 56 fps, and support for the D-Shell ESP32-S3.</description>
+    </item>
+  </channel>
+</rss>

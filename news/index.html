@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News and release notes - MicroPythonOS</title>
+    <meta name="description" content="Release notes and news for MicroPythonOS: what shipped in each version, from MP3 and video playback to native games and new board support.">
+    <link rel="canonical" href="https://micropythonos.com/news/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MicroPythonOS">
+    <meta property="og:title" content="News and release notes - MicroPythonOS">
+    <meta property="og:description" content="What shipped in each MicroPythonOS release.">
+    <meta property="og:url" content="https://micropythonos.com/news/">
+    <meta property="og:image" content="https://micropythonos.com/images/og-card.png">
+    <meta name="theme-color" content="#0A4D68">
+    <link rel="alternate" type="application/rss+xml" title="MicroPythonOS news" href="feed.xml">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <nav>
+        <div class="nav-container">
+            <a class="logo" href="../"><img src="../images/MicroPythonOS-logo-white(alpha)-long.svg" alt="MicroPythonOS"></a>
+            <ul id="nav-links">
+                <li><a href="./" aria-current="page">News</a></li>
+                <li><a href="https://web.MicroPythonOS.com/" target="_blank">Try</a></li>
+                <li><a href="https://install.micropythonos.com/" target="_blank">Install</a></li>
+                <li><a href="https://github.com/MicroPythonOS/MicroPythonOS/releases" target="_blank">Download</a></li>
+                <li><a href="https://chat.MicroPythonOS.com" target="_blank">Community</a></li>
+                <li><a href="https://docs.MicroPythonOS.com" target="_blank">Documentation</a></li>
+                <li><a href="mailto:info@MicroPythonOS.com">Contact</a></li>
+            </ul>
+            <button class="hamburger" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false" onclick="toggleMenu(this)">☰</button>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>News and release notes</h1>
+        <p>What shipped, when, and why it matters.</p>
+    </header>
+
+    <div class="container" id="main">
+        <section>
+            <h2>Latest</h2>
+            <ul class="news-list">
+                <li>
+                    <a href="0.22.0.html">
+                        <span class="news-card-meta">Release 0.22.0 &middot; 15 November 2026</span>
+                        <span class="news-list-title">MP3 and video playback arrive</span>
+                        <span class="news-list-summary">A native MPEG decoder, pause and seek in both players, sound from a passive piezo buzzer, native games at 56&nbsp;fps, and support for the D-Shell ESP32-S3.</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Older releases</h2>
+            <p>Every release ships with a full, user-facing changelog. The notes for older versions live on GitHub:</p>
+            <ul class="plain-list">
+                <li><a href="https://github.com/MicroPythonOS/MicroPythonOS/releases/tag/0.21.2" target="_blank">0.21.2</a> &middot; 5 November 2026</li>
+                <li><a href="https://github.com/MicroPythonOS/MicroPythonOS/releases/tag/0.21.0" target="_blank">0.21.0</a> &middot; 1 November 2026 &mdash; Nostr private group chats, faster QR scanning, time-zone fixes</li>
+                <li><a href="https://github.com/MicroPythonOS/MicroPythonOS/releases/tag/0.20.0" target="_blank">0.20.0</a> &middot; 8 October 2026</li>
+                <li><a href="https://github.com/MicroPythonOS/MicroPythonOS/releases/tag/0.19.0" target="_blank">0.19.0</a> &middot; 16 September 2026</li>
+                <li><a href="https://github.com/MicroPythonOS/MicroPythonOS/releases" target="_blank">All releases</a></li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>© <span id="copyright-year">3000</span> MicroPythonOS. All rights reserved.</p>
+        <div class="social-links">
+            <a href="./">News</a> |
+            <a href="https://chat.MicroPythonOS.com" target="_blank">Community Chat</a> |
+            <a href="https://github.com/MicroPythonOS" target="_blank">GitHub</a> |
+            <a href="https://docs.MicroPythonOS.com" target="_blank">Documentation</a> |
+            <a href="mailto:info@MicroPythonOS.com">Email</a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+        function toggleMenu(button) {
+            const navLinks = document.getElementById('nav-links');
+            const open = navLinks.classList.toggle('active');
+            if (button) button.setAttribute('aria-expanded', String(open));
+        }
+    </script>
+</body>
+</html>

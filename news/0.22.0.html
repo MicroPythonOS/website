@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Release 0.22.0: MP3 and video playback - MicroPythonOS</title>
+    <meta name="description" content="MicroPythonOS 0.22.0 adds MP3 playback through a native MPEG decoder, pause and seek in both players, sound from a passive piezo buzzer, native games at 56 fps, and support for the D-Shell ESP32-S3.">
+    <link rel="canonical" href="https://micropythonos.com/news/0.22.0.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="MicroPythonOS">
+    <meta property="og:title" content="Release 0.22.0: MP3 and video playback">
+    <meta property="og:description" content="A native MPEG decoder, pause and seek in both players, sound from a passive piezo, and native games at 56 fps.">
+    <meta property="og:url" content="https://micropythonos.com/news/0.22.0.html">
+    <meta property="og:image" content="https://micropythonos.com/images/og-card.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#0A4D68">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <nav>
+        <div class="nav-container">
+            <a class="logo" href="../"><img src="../images/MicroPythonOS-logo-white(alpha)-long.svg" alt="MicroPythonOS"></a>
+            <ul id="nav-links">
+                <li><a href="./" aria-current="page">News</a></li>
+                <li><a href="https://web.MicroPythonOS.com/" target="_blank">Try</a></li>
+                <li><a href="https://install.micropythonos.com/" target="_blank">Install</a></li>
+                <li><a href="https://github.com/MicroPythonOS/MicroPythonOS/releases" target="_blank">Download</a></li>
+                <li><a href="https://chat.MicroPythonOS.com" target="_blank">Community</a></li>
+                <li><a href="https://docs.MicroPythonOS.com" target="_blank">Documentation</a></li>
+                <li><a href="mailto:info@MicroPythonOS.com">Contact</a></li>
+            </ul>
+            <button class="hamburger" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false" onclick="toggleMenu(this)">☰</button>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Release 0.22.0: MP3 and video playback arrive</h1>
+        <p>15 November 2026 &middot; Release notes</p>
+    </header>
+
+    <div class="container" id="main">
+        <section class="article">
+            <p class="article-lead">MicroPythonOS 0.22.0 is out. This release makes the OS a real media player &mdash; MP3 and video, with pause, resume and seeking &mdash; and it adds sound to badges that only have a bare piezo disc for a speaker.</p>
+
+            <h2>Music from a microSD card</h2>
+
+            <p>MP3 is decoded by a new native <code>mp3dec</code> module built on minimp3: MPEG-1, MPEG-2 and MPEG-2.5 Layer&nbsp;III, constant and variable bitrate, mono or stereo, 8&ndash;48&nbsp;kHz. The file's own sample rate is used, so nothing is resampled and no pitch shift creeps in.</p>
+
+            <p>Decoding releases the interpreter lock, which means the UI keeps rendering while music plays. Duration, channel count and sample rate are read in pure Python, so the music player can list a folder and show lengths without decoding anything. On desktop the same code path hands MP3 to the host player.</p>
+
+            <h2>Video, with controls that behave</h2>
+
+            <p>The video player gained the controls it was missing: tap to pause and resume, a control bar that appears while paused and hides itself afterwards, looping, and seeking. Seeking is sample-accurate for WAV audio and frame-accurate for MP3, including VBR files, and the audio mixer keeps its position instead of restarting.</p>
+
+            <p>Under the hood the IMA ADPCM audio commonly muxed into on-device videos got about <strong>17&times; faster</strong> to decode &mdash; 33.6&nbsp;&micro;s per sample down to 1.9&nbsp;&micro;s &mdash; so the audio track now costs about 2&nbsp;ms of each 320&times;240 frame instead of 49&nbsp;ms. Without that, a video with sound simply could not hold its frame rate.</p>
+
+            <h2 id="games">Games at 56 frames per second</h2>
+
+            <p>A native renderer can now own its own RGB565 surface and present only the rows it actually changed, while LVGL stays the only writer of the panel. On a 320&times;240 badge that took our Breakout demo from <strong>7.6 to 56&nbsp;fps</strong>, with no flicker and no tearing.</p>
+
+            <p>The measurements behind it are in the docs: a full frame is about 25&nbsp;ms of SPI at ~6.2&nbsp;MB/s, so a game is designed around bands of rows rather than whole frames. If you have been waiting for an excuse to port a 2D engine, this is it &mdash; the guide, including the parts that <em>do not</em> work (stealing LVGL's display buffers, pausing its refresh), is in <a href="https://docs.micropythonos.com/apps/native-apps/">Native C/C++ Apps</a>.</p>
+
+            <h2 id="audio">Sound from a bare piezo</h2>
+
+            <p>Badge boards usually have a passive piezo disc and no audio codec. That disc is now a playback output in its own right: an LEDC channel at 78&nbsp;kHz fed from an 8&nbsp;KB ring buffer that a timer interrupt keeps full, so WAV and MP3 play through it. Because the disc only responds near 4&nbsp;kHz, there is an optional per-output exciter gain for material whose harmonics are too weak to be heard.</p>
+
+            <p>It is verified by measurement and not by ear: an acoustic test plays a known note sequence and folds each spectral peak to the expected harmonic, which is what makes low notes checkable at all through a resonator.</p>
+
+            <h2>New board: D-Shell ESP32-S3 N16R8</h2>
+
+            <p>A new target with ST7789V display, GT911 touch, keypad, WS2812 LEDs, QMI8658 IMU, MAX98357A audio and a buzzer, with automatic board detection. See <a href="https://docs.micropythonos.com/getting-started/supported-hardware/">supported hardware</a> for the full list.</p>
+
+            <h2>Smaller things worth knowing</h2>
+
+            <ul>
+                <li>The AppStore re-syncs installed state when it resumes, so an app you uninstall from its detail page leaves the Installed list, and the install button regains focus so keypad users can still press A.</li>
+                <li>Two of the most-used font sizes are no longer compressed: a full text screen redraws about 20&nbsp;ms faster at 12&nbsp;px, for 6.7&nbsp;KB of firmware.</li>
+                <li>In a file picker, tapping a folder now enters it instead of selecting it, and long-pressing selects an entry &mdash; so a picker can finally reach nested folders.</li>
+                <li>The console no longer freezes every task for ~28&nbsp;s when a host tool opens the USB-CDC port and sends non-REPL bytes.</li>
+                <li>Flat apps get their own helper modules, so two apps that both ship a <code>lora.py</code> no longer share the first one that loaded.</li>
+                <li>Time zones updated to IANA 2026e, with half-hour offsets east of UTC fixed.</li>
+            </ul>
+
+            <h2>How to get it</h2>
+
+            <p>If you are already running MicroPythonOS, open <strong>Settings &rarr; OS Update</strong>: the update is delivered over the air, and the boot partition alternates so a bad update is recoverable.</p>
+
+            <p>If you are starting fresh, the <a href="https://install.micropythonos.com/">web installer</a> flashes a supported board from the browser, and <a href="https://web.micropythonos.com/">the browser build</a> lets you try the OS without any hardware at all.</p>
+
+            <p class="article-footer">
+                The complete, user-facing list of changes is in the
+                <a href="https://github.com/MicroPythonOS/MicroPythonOS/releases/tag/0.22.0">release notes</a>.
+                Found a bug? <a href="https://github.com/MicroPythonOS/MicroPythonOS/issues">Open an issue</a>,
+                or say hello in the <a href="https://chat.MicroPythonOS.com">community chat</a>.
+            </p>
+        </section>
+    </div>
+
+    <footer>
+        <p>© <span id="copyright-year">3000</span> MicroPythonOS. All rights reserved.</p>
+        <div class="social-links">
+            <a href="./">News</a> |
+            <a href="https://chat.MicroPythonOS.com" target="_blank">Community Chat</a> |
+            <a href="https://github.com/MicroPythonOS" target="_blank">GitHub</a> |
+            <a href="https://docs.MicroPythonOS.com" target="_blank">Documentation</a> |
+            <a href="mailto:info@MicroPythonOS.com">Email</a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+        function toggleMenu(button) {
+            const navLinks = document.getElementById('nav-links');
+            const open = navLinks.classList.toggle('active');
+            if (button) button.setAttribute('aria-expanded', String(open));
+        }
+    </script>
+</body>
+</html>

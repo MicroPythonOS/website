@@ -3,7 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MicroPythonOS - The Ultimate MicroPython Operating System</title>
+    <title>MicroPythonOS - a MicroPython operating system for microcontrollers</title>
+    <meta name="description" content="MicroPythonOS is a lightweight operating system written in MicroPython, with a touch-screen UI, App Store, OTA updates, MP3 and video playback. Runs on ESP32 boards such as the Fri3d badge, Waveshare and M5Stack, on desktop, and in the browser.">
+    <link rel="canonical" href="https://micropythonos.com/">
+
+    <!-- Open Graph / social preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MicroPythonOS">
+    <meta property="og:title" content="MicroPythonOS - a MicroPython operating system for microcontrollers">
+    <meta property="og:description" content="A touch-screen MicroPython OS with App Store, OTA updates, MP3 and video playback. Runs on ESP32 boards, on desktop, and in your browser.">
+    <meta property="og:url" content="https://micropythonos.com/">
+    <meta property="og:image" content="https://micropythonos.com/images/og-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MicroPythonOS - a MicroPython operating system for microcontrollers">
+    <meta name="twitter:description" content="A touch-screen MicroPython OS with App Store, OTA updates, MP3 and video playback. Runs on ESP32 boards, on desktop, and in your browser.">
+    <meta name="twitter:image" content="https://micropythonos.com/images/og-card.png">
+    <meta name="theme-color" content="#0A4D68">
+
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
@@ -12,698 +30,17 @@
     <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512x512.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        body {
-            background: #F8EDE3;
-            color: #1A2E44;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navigation Menu */
-        nav {
-            background: #0A4D68;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        nav .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-
-        nav .logo {
-            /* font-family: 'Poppins', sans-serif; */
-            /* font-size: 1.5rem; */
-            /* color: #F8EDE3; */
-            display: flex;
-            align-items: center;
-            height: 100%;
-        }
-        
-        nav .logo img {
-            height: 50px; /* Adjusted for 10-20% bigger */
-            width: auto;
-        }
-        
-        header .logo-header {
-            height: 120px; /* Adjusted for even bigger in header */
-            width: auto;
-            margin-bottom: 15px;
-            animation: fadeIn 1s ease-in;
-        }
-        
-        @media (max-width: 768px) {
-            nav .logo img {
-                height: 40px; /* Smaller on mobile */
-                width: 100%;
-            }
-        
-            header .logo-header {
-                height: 80px; /* Smaller on mobile */
-                width: 100%;
-            }
-
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        nav ul li a {
-            color: #F8EDE3;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: #FF6B6B;
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            color: #F8EDE3;
-            font-size: 1.5rem;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #0A4D68 0%, #1A2E44 100%);
-            color: #F8EDE3;
-            text-align: center;
-            padding: 120px 20px 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 3.5rem;
-            margin-bottom: 15px;
-            animation: fadeIn 1s ease-in;
-        }
-
-        header p {
-            font-size: 1.5rem;
-            opacity: 0.9;
-            margin-bottom: 20px;
-            animation: fadeIn 1s ease-in 0.3s both;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
-            color: #F8EDE3;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 500;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeIn 1s ease-in 0.6s both;
-            margin: 5px;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Sections */
-        section {
-            margin: 60px 0;
-            background: #fff;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            animation: fadeInUp 1s ease-in;
-        }
-
-        .highlight-section {
-            background: #e0f7fa; /* Light blue background */
-            padding: 10px ; /* More padding */
-            margin: 10px ; /* More margin */
-            border: 2px solid #00bcd4; /* Cyan border */
-            box-shadow: 0 8px 25px rgba(0, 188, 212, 0.2); /* Enhanced shadow */
-        }
-        .highlight-section section{
-            margin: 10px;
-        }
-        .highlight-section section{
-            margin: 10px;
-            text-align: center;
-        }
-
-        section h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.2rem;
-            color: #0A4D68;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        section p, section ul {
-            font-size: 1.1rem;
-            color: #1A2E44;
-        }
-
-        section ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        section ul li {
-            margin: 15px 0;
-            padding-left: 30px;
-            position: relative;
-            transition: transform 0.3s ease;
-        }
-
-        section ul li:hover {
-            transform: translateX(10px);
-        }
-
-        section ul li:before {
-            content: "✔";
-            color: #FF6B6B;
-            position: absolute;
-            left: 0;
-            font-size: 1.2rem;
-        }
-
-        /* Screenshots */
-        .screenshots {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            justify-content: center;
-        }
-
-        /* Target both <img> and <video> */
-        .screenshots img,
-        .screenshots video {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 4 / 3;           /* Forces 4:3 ratio (e.g. 320x240) */
-            object-fit: contain;           /* Keeps full content visible */
-            border-radius: 0px;		   /* no rounded corners because the content is close to the corner too */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: #000;              /* Prevents flash on video load */
-            display: block;                /* Removes inline spacing */
-        }
-
-        /* Unified hover effect */
-        .screenshots img:hover,
-        .screenshots video:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-        }
-
-        /*
-         * =====================================================================
-         * Generic Video Play Overlay Styles
-         * =====================================================================
-         * Usage: Add the attribute `data-play-overlay` to any <video> element.
-         * The JavaScript below will automatically wrap the video in a container
-         * and inject a clickable/keyboard-accessible play overlay.
-         *
-         * Example:
-         *   <video data-play-overlay poster="thumb.png" ...>
-         *     <source src="video.mp4" type="video/mp4">
-         *   </video>
-         * =====================================================================
-         */
-
-        /* Container injected around each <video data-play-overlay> */
-        .video-overlay-container {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        /* Overlay button covering the video; hidden when .hidden class is added */
-        .video-play-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.35);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            z-index: 10;
-        }
-
-        .video-play-overlay:hover {
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .video-play-overlay:focus {
-            outline: 3px solid #FF6B6B;
-            outline-offset: 2px;
-        }
-
-        /* Play icon: white circle with CSS triangle */
-        .play-icon {
-            width: 72px;
-            height: 72px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .video-play-overlay:hover .play-icon {
-            transform: scale(1.1);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-        }
-
-        /* CSS triangle for play symbol */
-        .play-icon::after {
-            content: "";
-            display: block;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 14px 0 14px 24px;
-            border-color: transparent transparent transparent #0A4D68;
-            margin-left: 6px; /* Optical centering */
-        }
-
-        /* Hide overlay when video is playing */
-        .video-play-overlay.hidden {
-            display: none;
-        }
-
-        /* GitHub Link */
-        .github-link {
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        .github-link a {
-            display: inline-flex;
-            align-items: center;
-            text-decoration: none;
-            color: #F8EDE3;
-            font-size: 1.2rem;
-            background: linear-gradient(45deg, #0A4D68, #1A2E44);
-            padding: 10px 20px;
-            border-radius: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .github-link a img {
-            width: 36px;
-            height: 36px;
-            margin-right: 10px;
-            filter: invert(1);
-            mix-blend-mode:lighten;
-        }
-
-        .github-link a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Contact */
-        .contact {
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        .contact a {
-            color: #FF6B6B;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
-        }
-
-        .contact a:hover {
-            color: #0A4D68;
-        }
-
-        /* Footer */
-        footer {
-            background: #1A2E44;
-            color: #F8EDE3;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 60px;
-        }
-
-        footer p {
-            margin-bottom: 10px;
-        }
-
-        .social-links a {
-            color: #F8EDE3;
-            margin: 0 10px;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: #FF6B6B;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background: #0A4D68;
-                padding: 20px;
-            }
-
-            nav ul.active {
-                display: flex;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            header h1 {
-                font-size: 2.5rem;
-            }
-
-            header p {
-                font-size: 1.2rem;
-            }
-
-            .cta-button {
-                padding: 10px 20px;
-                font-size: 1rem;
-            }
-
-            section h2 {
-                font-size: 1.8rem;
-            }
-
-            .screenshots {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            }
-        }
-
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 2rem;
-            }
-
-            section {
-                padding: 20px;
-            }
-
-            .screenshots {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Supported Hardware Slider */
-        #supported-hardware .slider-container {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            margin-top: 30px;
-        }
-
-        #supported-hardware .slider {
-            display: flex;
-            overflow-x: scroll;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
-            scrollbar-width: none; /* Hide scrollbar for Firefox */
-            -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
-        }
-
-        #supported-hardware .slider::-webkit-scrollbar {
-            display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
-        }
-
-        #supported-hardware .slide {
-            flex: 0 0 auto;
-            width: 300px; /* Adjust as needed */
-            margin: 10px;
-            scroll-snap-align: start;
-            text-align: center;
-            background: #f0f0f0;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        #supported-hardware .slide img {
-            width: 100%;
-            max-width: 200px;
-            height: auto;
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        #supported-hardware .slide h3 {
-            font-size: 1.4rem;
-            margin-bottom: 5px;
-            color: #0A4D68;
-        }
-
-        #supported-hardware .slide p {
-            font-size: 1rem;
-            color: #555;
-            margin-bottom: 10px;
-        }
-
-        #supported-hardware .slide a {
-            display: inline-block;
-            background: #FF6B6B;
-            color: #fff;
-            padding: 8px 15px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: background 0.3s ease;
-        }
-
-        #supported-hardware .slide a:hover {
-            background: #FF8E8E;
-        }
-
-        #supported-hardware .slider-controls {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            gap: 10px;
-        }
-
-#supported-hardware .prev-button, #supported-hardware .next-button {
-            background: #0A4D68;
-            color: #fff;
-            border: none;
-            width: 40px; /* Set a fixed width */
-            height: 40px; /* Set a fixed height, equal to width for perfect circle */
-            padding: 0; /* Remove padding to allow width/height to control size */
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            display: flex; /* Use flexbox for centering content */
-            align-items: center; /* Center vertically */
-            justify-content: center; /* Center horizontally */
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 999;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            flex-shrink: 0; /* Prevent buttons from shrinking */
-        }
-
-        #supported-hardware .prev-button {
-            left: 10px;
-        }
-
-        #supported-hardware .next-button {
-            right: 10px;
-        }
-
-        #supported-hardware .slider-dots {
-            display: flex;
-            justify-content: center;
-            margin-top: 15px;
-        }
-
-        #supported-hardware .dot {
-            height: 10px;
-            width: 10px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            margin: 0 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        #supported-hardware .dot.active {
-            background-color: #717171;
-        }
-
-        #supported-hardware .show-all-button {
-            background: none;
-            border: none;
-            color: #0A4D68;
-            font-size: 1.1rem;
-            text-decoration: underline;
-            cursor: pointer;
-            padding: 0;
-            transition: color 0.3s ease;
-        }
-
-        #supported-hardware .show-all-button:hover {
-            color: #FF6B6B;
-        }
-
-        .call-to-action {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 1.1rem;
-            color: #1A2E44;
-        }
-
-        .call-to-action a {
-            display: inline-block;
-            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
-            color: #F8EDE3;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 500;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin: 5px;
-        }
-
-        .call-to-action a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
-        }
-
-        /* Grid View */
-        #supported-hardware .slider.grid-view {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            overflow-x: hidden;
-            scroll-snap-type: none;
-        }
-
-        #supported-hardware .slider.grid-view .slide {
-            width: auto;
-            margin: 0;
-        }
-
-        #supported-hardware .slider.grid-view ~ .prev-button,
-        #supported-hardware .slider.grid-view ~ .next-button,
-        #supported-hardware .slider.grid-view ~ .slider-dots {
-            display: none;
-        }
-
-        /* Responsive adjustments for slider */
-        @media (max-width: 768px) {
-            #supported-hardware .slide {
-                width: 250px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            #supported-hardware .slide {
-                width: 90%; /* Almost full width on very small screens */
-                margin: 10px auto;
-            }
-        }
-
-        /* Coming Soon Styling */
-        #supported-hardware .slide.coming-soon {
-            opacity: 0.6;
-            filter: grayscale(70%);
-            transition: opacity 0.3s ease, filter 0.3s ease;
-        }
-
-        #supported-hardware .slide.coming-soon:hover {
-            opacity: 1;
-            filter: grayscale(0%);
-        }
-
-        #supported-hardware .slide.coming-soon h3,
-        #supported-hardware .slide.coming-soon p {
-            color: #888;
-        }
-
-        #supported-hardware .slide.coming-soon a {
-            display: none; /* Hide "Learn More" button for coming soon items */
-        }
-    </style>
+    <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <!-- Navigation Menu -->
     <nav>
         <div class="nav-container">
-            <div class="logo"><img src="images/MicroPythonOS-logo-white(alpha)-long.svg" alt="MicroPythonOS Logo"></div>
+            <a class="logo" href="./"><img src="images/MicroPythonOS-logo-white(alpha)-long.svg" alt="MicroPythonOS"></a>
             <ul id="nav-links">
+                <li><a href="news/" aria-label="News and release notes">News</a></li>
                 <li><a href="https://web.MicroPythonOS.com/" target="_blank" aria-label="Try MicroPythonOS in Browser">Try</a></li>
                 <li><a href="https://install.micropythonos.com/" target="_blank" aria-label="Install MicroPythonOS">Install</a></li>
                 <li><a href="https://github.com/MicroPythonOS/MicroPythonOS/releases" target="_blank" aria-label="Download MicroPythonOS">Download</a></li>
@@ -711,7 +48,7 @@
                 <li><a href="https://docs.MicroPythonOS.com" target="_blank" aria-label="Documentation">Documentation</a></li>
                 <li><a href="mailto:info@MicroPythonOS.com" aria-label="Contact MicroPythonOS">Contact</a></li>
             </ul>
-            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <button class="hamburger" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false" onclick="toggleMenu(this)">☰</button>
         </div>
     </nav>
 
@@ -720,13 +57,41 @@
         <!-- <h1>MicroPythonOS</h1> -->
         <img src="images/MicroPythonOS-logo-white(alpha)-long.svg" alt="MicroPythonOS Logo" class="logo-header">
         <p>The Only Operating System Built with MicroPython!</p>
-        <a href="https://docs.micropythonos.com/" target="_blank" class="cta-button">Documentation</a>
-        <a href="https://install.micropythonos.com/" target="_blank" class="cta-button">Installation</a>
-        <a href="https://web.MicroPythonOS.com/" target="_blank" class="cta-button">Try in Browser</a>
+        <a class="release-badge" href="news/0.22.0.html">
+            <span class="release-badge-tag">Release 0.22.0</span>
+            MP3 and video playback on a microcontroller &rarr;
+        </a>
+        <div class="hero-buttons">
+            <a href="https://docs.micropythonos.com/" target="_blank" class="cta-button">Documentation</a>
+            <a href="https://install.micropythonos.com/" target="_blank" class="cta-button">Installation</a>
+            <a href="https://web.MicroPythonOS.com/" target="_blank" class="cta-button">Try in Browser</a>
+        </div>
     </header>
 
     <!-- Main Content -->
-    <div class="container">
+    <div class="container" id="main">
+        <section id="whats-new">
+            <h2>What's new</h2>
+            <div class="news-grid">
+                <a class="news-card" href="news/0.22.0.html">
+                    <span class="news-card-meta">Release 0.22.0 &middot; 15 November 2026</span>
+                    <h3>MP3 and video playback</h3>
+                    <p>A native MPEG-1/2/2.5 Layer&nbsp;III decoder plays MP3 from flash or SD card while the UI keeps rendering, with pause, resume and frame-accurate seeking. The video player gains the same controls.</p>
+                </a>
+                <a class="news-card" href="news/0.22.0.html#games">
+                    <span class="news-card-meta">Release 0.22.0 &middot; 15 November 2026</span>
+                    <h3>Games at 56 frames per second</h3>
+                    <p>A new native renderer lets a C engine own its own surface and present only the rows it changed. Breakout went from 7.6 to 56&nbsp;fps on a 320&times;240 badge, with no flicker.</p>
+                </a>
+                <a class="news-card" href="news/0.22.0.html#audio">
+                    <span class="news-card-meta">Release 0.22.0 &middot; 15 November 2026</span>
+                    <h3>Sound from a bare piezo</h3>
+                    <p>The passive buzzer on badge boards is now a real playback output, driven from a timer-fed ring buffer, so WAV and MP3 play on hardware that has no audio codec at all.</p>
+                </a>
+            </div>
+            <p class="news-more"><a href="news/">All news and release notes &rarr;</a></p>
+        </section>
+
         <section>
             <h2>Why MicroPythonOS?</h2>
             <p>MicroPythonOS is a lightweight, fast, and versatile operating system designed to run on microcontrollers like the ESP32 and desktop systems. With a modern Android-like touch screen UI, App Store, and Over-The-Air updates, it’s the perfect OS for innovators and developers.</p>
@@ -735,57 +100,42 @@
         <section>
             <h2>Screenshots</h2>
             <div class="screenshots">
-                <!-- Adding "data-play-overlay" to the <video/> tags below will show a nice "Play" button instead of autoplay, but for now, autoplay is more fun. -->
-                <!-- <img src="screenshots/light/0.0.6/launcher.png" alt="Launcher Screenshot"/> -->
                 <video autoplay loop muted playsinline poster="screenshots/light/0.7.2/launcher_appstore.png" width="320" height="240" preload="auto">
                     <source src="screenshots/light/0.7.2/launcher-2026-01-28_19.19.21.mp4" type="video/mp4">
-                    <img src="screenshots/light/0.7.2/launcher_appstore.png" alt="MicroPythonOS Launcher">
+                    <img src="screenshots/light/0.7.2/launcher_appstore.png" alt="MicroPythonOS launcher">
                 </video>
-                <!-- <img src="screenshots/light/0.0.6/mpos_drawer_42p.png" alt="Drawer Screenshot"/> -->
+                <video autoplay loop muted playsinline poster="screenshots/light/0.7.2/appstore_connect4.png" width="320" height="240" preload="auto">
+                    <source src="screenshots/light/0.7.2/appstore-2026-01-28_19.35.04_cut.mp4" type="video/mp4">
+                    <img src="screenshots/light/0.7.2/appstore_connect4.png" alt="MicroPythonOS App Store installing an app">
+                </video>
                 <video autoplay loop muted playsinline poster="screenshots/light/0.7.2/mpos_drawer.png" width="320" height="240" preload="auto">
                     <source src="screenshots/light/0.7.2/About-2026-01-28_19.43.07_cut.mp4" type="video/mp4">
-                    <img src="screenshots/light/0.7.2/mpos_drawer.png" alt="MicroPythonOS top drawer menu">
+                    <img src="screenshots/light/0.7.2/mpos_drawer.png" alt="MicroPythonOS top drawer and About app">
                 </video>
-                <!-- <img src="screenshots/light/0.1.1/wifi.png" alt="WiFi Settings Screenshot"/> -->
-                <video autoplay loop muted playsinline poster="screenshots/light/0.7.2/wifi_list.png" width="320" height="240" preload="auto">
-                    <source src="screenshots/light/0.7.2/wifi-2026-01-28_19.37.59_cut.mp4" type="video/mp4">
-                    <img src="screenshots/light/0.7.2/wifi_list.png" alt="MicroPythonOS WiFi app">
-                </video>
-                <!--<img src="screenshots/light/0.3.3/wifi_password.png" alt="Password Input Screenshot"/> -->
                 <video autoplay loop muted playsinline poster="screenshots/light/0.7.2/settings_top.png" width="320" height="240" preload="auto">
                     <source src="screenshots/light/0.7.2/SettingsQuick-2026-01-28_19.46.06_cut.mp4" type="video/mp4">
                     <img src="screenshots/light/0.7.2/settings_top.png" alt="MicroPythonOS Settings app">
                 </video>
 
-
-                <img src="screenshots/dark/0.0.4/0.0.4_imu1.png" alt="Dark Theme IMU Screenshot"/>
-                <!-- <img src="screenshots/light/0.0.6/hello_world_install.png" alt="Hello World Install Screenshot"/> -->
-                <!-- <img src="screenshots/light/0.0.6/hello_world_sourcecode_no_window.png" alt="Hello World Source Code Screenshot"/> -->
-                <img src="screenshots/light/0.7.2/filemanager_apps.png" alt="MicroPythonOS FileManager"/>
-                <video autoplay loop muted playsinline poster="screenshots/light/0.3.2/com.quasikili.quasibird_0.0.3.png" width="320" height="240" preload="auto">
+                <!-- The remaining clips load on demand: tap the poster to play. -->
+                <video data-play-overlay autoplay loop muted playsinline poster="screenshots/light/0.7.2/wifi_list.png" width="320" height="240" preload="none">
+                    <source src="screenshots/light/0.7.2/wifi-2026-01-28_19.37.59_cut.mp4" type="video/mp4">
+                    <img src="screenshots/light/0.7.2/wifi_list.png" alt="MicroPythonOS Wi-Fi app">
+                </video>
+                <video data-play-overlay autoplay loop muted playsinline poster="screenshots/light/0.7.2/osupdate_67.png" width="320" height="240" preload="none">
+                    <source src="screenshots/light/0.7.2/osupdate-2026-01-28_19.39.18_cut.mp4" type="video/mp4">
+                    <img src="screenshots/light/0.7.2/osupdate_67.png" alt="MicroPythonOS OS Update app">
+                </video>
+                <video data-play-overlay autoplay loop muted playsinline poster="screenshots/light/0.3.2/com.quasikili.quasibird_0.0.3.png" width="320" height="240" preload="none">
                     <source src="videos/QuasiBird_0.0.3.mp4" type="video/mp4">
                     <img src="screenshots/light/0.3.2/com.quasikili.quasibird_0.0.3.png" alt="QuasiBird game in action">
                 </video>
-                <!-- <img src="screenshots/light/0.0.6/mpos_appstore_camera.png" alt="Camera App Store Screenshot"/> -->
-                <!-- <img src="screenshots/light/0.0.6/mpos_camera_qr_320x240.png" alt="Camera QR Code Screenshot"/> -->
-                <img src="screenshots/light/0.7.2/camera_qr_code.png" alt="Camera QR Code Screenshot"/>
 
-
-
-                <!-- <img src="screenshots/light/0.0.6/osupdate_progress3.png" alt="OS Update Progress Screenshot"/> -->
-                <video autoplay loop muted playsinline poster="screenshots/light/0.7.2/osupdate_67.png" width="320" height="240" preload="auto">
-                    <source src="screenshots/light/0.7.2/osupdate-2026-01-28_19.39.18_cut.mp4" type="video/mp4">
-                    <img src="screenshots/light/0.7.2/osupdate_67.png" alt="MicroPythonOS AppStore">
-                </video>
-                <!-- <img src="screenshots/dark/0.0.4/0.0.4_launcher1.png" alt="Dark Theme Launcher Screenshot"/> -->
-                <img src="screenshots/light/0.0.6/image_viewer.png" alt="Image Viewer Screenshot"/>
-                <img src="screenshots/dark/0.3.3/wifi_password.png" alt="Dark Theme WiFi Password Screenshot"/>
-                <!-- <img src="screenshots/dark/0.0.4/0.0.4_appstore_uninstall_draw.png" alt="Dark Theme App Store Uninstall Screenshot"/> -->
-                <!-- <img src="screenshots/light/0.0.6/mpos_appstore.png" alt="App Store Screenshot"/> -->
-                <video autoplay loop muted playsinline poster="screenshots/light/0.7.2/appstore_connect4.png" width="320" height="240" preload="auto">
-                    <source src="screenshots/light/0.7.2/appstore-2026-01-28_19.35.04_cut.mp4" type="video/mp4">
-                    <img src="screenshots/light/0.7.2/appstore_connect4.png" alt="MicroPythonOS AppStore">
-                </video>
+                <img src="screenshots/light/0.7.2/filemanager_apps.png" alt="MicroPythonOS File Manager listing apps">
+                <img src="screenshots/light/0.7.2/camera_qr_code.png" alt="MicroPythonOS Camera app reading a QR code">
+                <img src="screenshots/light/0.0.6/image_viewer.png" alt="MicroPythonOS Image Viewer">
+                <img src="screenshots/dark/0.3.3/wifi_password.png" alt="MicroPythonOS Wi-Fi password entry in the dark theme">
+                <img src="screenshots/dark/0.0.4/0.0.4_imu1.png" alt="MicroPythonOS IMU app showing live sensor values in the dark theme">
             </div>
         </section>
         
@@ -795,72 +145,127 @@
             <div class="slider-container">
                 <div class="slider">
                     <div class="slide">
-                        <img src="supported_devices/your_device.webp" alt="Your Device">
+                        <img src="supported_devices/your_device.webp" alt="Your Device?">
                         <h3>Your Device?</h3>
                         <p><a href="mailto:info@MicroPythonOS.com">Email us!</a></p>
-                    </div>
-                    <div class="slide">
-                        <img src="supported_devices/waveshare_esp32_s3_touch_lcd_2.webp" alt="Waveshare ESP32-S3-Touch-LCD-2">
-                        <h3>Waveshare ESP32-S3-Touch-LCD-2</h3>
-                        <p>Fully Supported</p>
-                        <a href="https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-2?ref=MicroPythonOS.com" target="_blank">Learn More</a>
-                    </div>
-                    <div class="slide">
-                        <img src="supported_devices/matouch_esp32_s3_spi_ips_2_8_with_camera_ov3660.webp" alt="Matouch ESP32-S3 SPI IPS 2.8 with Camera OV3660">
-                        <h3>Matouch ESP32-S3 SPI IPS 2.8 with Camera OV3660</h3>
-                        <p>Fully Supported</p>
-                        <a href="https://www.makerfabs.com/matouch-esp32-s3-spi-ips-2-8-with-camera-ov3660.html?ref=MicroPythonOS.com" target="_blank">Learn More</a>                        
                     </div>
                     <div class="slide">
                         <img src="supported_devices/fri3d_2024.webp" alt="Fri3d Camp 2024 Badge">
                         <h3>Fri3d Camp 2024 Badge</h3>
                         <p>Fully Supported</p>
-                        <a href="https://fri3d.be/badge/2024/?ref=MicroPythonOS.com" target="_blank">Learn More</a>
+                        <a href="https://fri3d.be/badge/2024/?ref=MicroPythonOS.com" target="_blank" rel="noopener">Learn More</a>
                     </div>
                     <div class="slide">
-                        <img src="supported_devices/fri3d_2026.png" alt="Fri3d Camp 2026 Badge">
+                        <img src="supported_devices/fri3d_2026.webp" alt="Fri3d Camp 2026 Badge">
                         <h3>Fri3d Camp 2026 Badge</h3>
                         <p>Fully Supported</p>
-                        <a href="https://fri3dcamp.github.io/badge_2026/badge/#hardware?ref=MicroPythonOS.com" target="_blank">Learn More</a>
+                        <a href="https://fri3dcamp.github.io/badge_2026/badge/#hardware?ref=MicroPythonOS.com" target="_blank" rel="noopener">Learn More</a>
                     </div>
-                   <div class="slide">
+                    <div class="slide">
+                        <img src="supported_devices/waveshare_esp32_s3_touch_lcd_2.webp" alt="Waveshare ESP32-S3-Touch-LCD-2">
+                        <h3>Waveshare ESP32-S3-Touch-LCD-2</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-2?ref=MicroPythonOS.com" target="_blank" rel="noopener">Learn More</a>
+                    </div>
+                    <div class="slide">
+                        <img src="supported_devices/waveshare_esp32_s3_touch_lcd_1_54.svg" alt="Waveshare ESP32-S3-Touch-LCD-1.54">
+                        <h3>Waveshare ESP32-S3-Touch-LCD-1.54</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-1.54?ref=MicroPythonOS.com" target="_blank" rel="noopener">Learn More</a>
+                    </div>
+                    <div class="slide">
+                        <img src="supported_devices/waveshare_esp32_s3_touch_lcd_3_5.svg" alt="Waveshare ESP32-S3-Touch-LCD-3.5">
+                        <h3>Waveshare ESP32-S3-Touch-LCD-3.5</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-3.5?ref=MicroPythonOS.com" target="_blank" rel="noopener">Learn More</a>
+                    </div>
+                    <div class="slide">
+                        <img src="supported_devices/waveshare_esp32_p4_wifi6_touch_lcd_4_3.svg" alt="Waveshare ESP32-P4-WIFI6-Touch-LCD-4.3">
+                        <h3>Waveshare ESP32-P4-WIFI6-Touch-LCD-4.3</h3>
+                        <p>Supported on P4 chip revisions v0.x and v1.x (not v3.x)</p>
+                        <a href="https://docs.waveshare.com/ESP32-P4-WIFI6-Touch-LCD-4.3?ref=MicroPythonOS.com" target="_blank" rel="noopener">Learn More</a>
+                    </div>
+                    <div class="slide">
+                        <img src="supported_devices/matouch_esp32_s3_spi_ips_2_8_with_camera_ov3660.webp" alt="MaTouch ESP32-S3 SPI IPS 2.8" with Camera OV3660">
+                        <h3>MaTouch ESP32-S3 SPI IPS 2.8" with Camera OV3660</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://www.makerfabs.com/matouch-esp32-s3-spi-ips-2-8-with-camera-ov3660.html?ref=MicroPythonOS.com" target="_blank" rel="noopener">Learn More</a>
+                    </div>
+                    <div class="slide">
                         <img src="supported_devices/m5stack_fire.webp" alt="M5Stack Fire">
                         <h3>M5Stack Fire</h3>
                         <p>Fully Supported</p>
-                        <a href="https://docs.m5stack.com/en/core/fire?ref=MicroPythonOS.com" target="_blank">Learn More</a>
+                        <a href="https://docs.m5stack.com/en/core/fire?ref=MicroPythonOS.com" target="_blank" rel="noopener">Learn More</a>
+                    </div>
+                    <div class="slide">
+                        <img src="supported_devices/m5stack_core2.svg" alt="M5Stack Core2">
+                        <h3>M5Stack Core2</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://docs.m5stack.com/en/core/core2?ref=MicroPythonOS.com" target="_blank" rel="noopener">Learn More</a>
                     </div>
                     <div class="slide">
                         <img src="supported_devices/odroid_go.webp" alt="ODROID-Go">
                         <h3>ODROID-Go</h3>
                         <p>Fully Supported</p>
-                        <a href="https://wiki.odroid.com/odroid_go/odroid_go?ref=MicroPythonOS.com" target="_blank">Learn More</a>
-                        
+                        <a href="https://wiki.odroid.com/odroid_go/odroid_go?ref=MicroPythonOS.com" target="_blank" rel="noopener">Learn More</a>
                     </div>
                     <div class="slide">
-                        <img src="supported_devices/lilygo_t_watch_s3.webp" alt="Lilygo T-Watch S3">
-                        <h3>Lilygo T-Watch S3</h3>
-                        <p>Supported like T-Watch S3 Plus</p>
+                        <img src="supported_devices/lilygo_t_display_s3.webp" alt="LilyGo T-Display S3">
+                        <h3>LilyGo T-Display S3</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://lilygo.cc/products/t-display-s3?ref=MicroPythonOS.com" target="_blank" rel="noopener">Learn More</a>
+                    </div>
+                    <div class="slide">
+                        <img src="supported_devices/lilygo_t_hmi.svg" alt="LilyGo T-HMI">
+                        <h3>LilyGo T-HMI</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://lilygo.cc/en-us/products/t-hmi?ref=MicroPythonOS.com" target="_blank" rel="noopener">Learn More</a>
+                    </div>
+                    <div class="slide">
+                        <img src="supported_devices/lilygo_t4.svg" alt="LilyGo T4">
+                        <h3>LilyGo T4</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://github.com/Xinyuan-LilyGO/LilyGo_Txx" target="_blank" rel="noopener">Learn More</a>
+                    </div>
+                    <div class="slide">
+                        <img src="supported_devices/lilygo_t_watch_s3.webp" alt="LilyGo T-Watch S3">
+                        <h3>LilyGo T-Watch S3</h3>
+                        <p>Supported like the T-Watch S3 Plus</p>
                     </div>
                     <div class="slide soon">
-                        <img src="supported_devices/lilygo_t_watch_s3_plus.webp" alt="Lilygo T-Watch S3 Plus">
-                        <h3>Lilygo T-Watch S3 Plus</h3>
-                        <p>Supported but some parts (LoRa, GPS) coming soon</p>
+                        <img src="supported_devices/lilygo_t_watch_s3_plus.webp" alt="LilyGo T-Watch S3 Plus">
+                        <h3>LilyGo T-Watch S3 Plus</h3>
+                        <p>Fully supported; LoRa and GPS coming soon</p>
                     </div>
                     <div class="slide">
-                        <img src="supported_devices/lilygo_t_display_s3.webp" alt="Lilygo T-Display S3">
-                        <h3>Lilygo T-Display S3</h3>
+                        <img src="supported_devices/unphone_9.svg" alt="unPhone 9">
+                        <h3>unPhone 9</h3>
                         <p>Fully Supported</p>
-                        <a href="https://lilygo.cc/products/t-display-s3" target="_blank">Learn More</a>
+                        <a href="https://unphone.net/?ref=MicroPythonOS.com" target="_blank" rel="noopener">Learn More</a>
                     </div>
-                    <div class="slide coming-soon">
-                        <img src="supported_devices/lilygo_t_watch_ultra.webp" alt="Lilygo T-Watch Ultra">
-                        <h3>Lilygo T-Watch Ultra</h3>
-                        <p>Coming Soon</p>
+                    <div class="slide">
+                        <img src="supported_devices/freenove_esp32_s3_display.svg" alt="Freenove ESP32-S3 Display">
+                        <h3>Freenove ESP32-S3 Display</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://github.com/Freenove/Freenove_ESP32_S3_Display" target="_blank" rel="noopener">Learn More</a>
                     </div>
-                    <div class="slide coming-soon">
-                        <img src="supported_devices/matouch_esp32_s3_parallel_ips_with_touch_2_8.webp" alt="Matouch ESP32-S3 Parallel IPS with Touch 2.8">
-                        <h3>Matouch ESP32-S3 Parallel IPS with Touch 2.8</h3>
-                        <p>Coming Soon</p>
+                    <div class="slide">
+                        <img src="supported_devices/unihiker_k10.svg" alt="DFRobot UniHiker K10">
+                        <h3>DFRobot UniHiker K10</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://www.dfrobot.com/product-2676.html?ref=MicroPythonOS.com" target="_blank" rel="noopener">Learn More</a>
+                    </div>
+                    <div class="slide">
+                        <img src="supported_devices/squixl.svg" alt="SQUiXL">
+                        <h3>SQUiXL</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://squixl.io?ref=MicroPythonOS.com" target="_blank" rel="noopener">Learn More</a>
+                    </div>
+                    <div class="slide">
+                        <img src="supported_devices/d_shell_esp32_s3_n16r8.svg" alt="D-Shell ESP32-S3 N16R8">
+                        <h3>D-Shell ESP32-S3 N16R8</h3>
+                        <p>Fully Supported</p>
+                        <a href="https://github.com/FreakStudioCN/MicroPython_Claude_Assistant_Public" target="_blank" rel="noopener">Learn More</a>
                     </div>
                 </div>
                 <button class="prev-button">❮</button>
@@ -873,15 +278,18 @@
         </section>
         
         <section class="highlight-section">
-            <section>
-                <h2>Custom App?</h2>
-                <h2>Device Support?</h2>
-                <p>&nbsp;</p>
-                <p class="center">Want us to make a custom app?</p>
-                <p>&nbsp;</p>
-                <p>Want your device supported?</p>
-                <p class="call-to-action" > <a href="mailto:info@MicroPythonOS.com">Email us!</a></p>
-               </section>
+            <div class="highlight-grid">
+                <section>
+                    <h2>Custom App?</h2>
+                    <p>Want us to make a custom app?</p>
+                    <p class="call-to-action"><a href="mailto:info@MicroPythonOS.com">Email us!</a></p>
+                </section>
+                <section>
+                    <h2>Device Support?</h2>
+                    <p>Want your device supported?</p>
+                    <p class="call-to-action"><a href="mailto:info@MicroPythonOS.com">Email us!</a></p>
+                </section>
+            </div>
         </section>
 
         <section>
@@ -891,6 +299,9 @@
                 <li>Android-like touch screen UI with gestures</li>
                 <li>App Store for easy app access</li>
                 <li>Over-The-Air (OTA) updates</li>
+                <li>MP3 and video playback, with pause, resume and seeking</li>
+                <li>Audio on boards that only have a piezo buzzer</li>
+                <li>A native renderer for games and other C apps</li>
                 <li>Supports touch screens, IMUs, and cameras</li>
                 <li>Fast and lightweight performance</li>
             </ul>
@@ -940,8 +351,11 @@
     <footer>
         <p>© <span id="copyright-year">3000</span> MicroPythonOS. All rights reserved.</p>
         <div class="social-links">
+            <a href="news/">News</a> |
             <a href="https://chat.MicroPythonOS.com" target="_blank">Community Chat</a> |
+            <a href="https://github.com/MicroPythonOS/MicroPythonOS/releases" target="_blank">Release notes</a> |
             <a href="https://github.com/MicroPythonOS" target="_blank">GitHub</a> |
+            <a href="https://docs.MicroPythonOS.com" target="_blank">Documentation</a> |
             <a href="mailto:info@MicroPythonOS.com">Email</a>
         </div>
     </footer>
@@ -952,9 +366,10 @@
 	</script>
     <!-- JavaScript for Hamburger Menu -->
     <script>
-        function toggleMenu() {
+        function toggleMenu(button) {
             const navLinks = document.getElementById('nav-links');
-            navLinks.classList.toggle('active');
+            const open = navLinks.classList.toggle('active');
+            if (button) button.setAttribute('aria-expanded', String(open));
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -1133,83 +548,23 @@
         })();
     </script>
 
-    <!--
-      =========================================================================
-      Generic Video Play Overlay Script
-      =========================================================================
-      Automatically initializes play overlays for all <video data-play-overlay>
-      elements. The script:
-        1. Wraps each video in a .video-overlay-container
-        2. Injects a .video-play-overlay button with a CSS play icon
-        3. Handles click, Enter, and Space to play the video
-        4. Shows native controls after playback starts
-        5. Re-shows the overlay when the video ends (for replay)
-
-      To opt-in a new video, simply add the data-play-overlay attribute:
-        <video data-play-overlay poster="thumb.png" ...>
-          <source src="video.mp4" type="video/mp4">
-        </video>
-      =========================================================================
-    -->
+    <!-- Respect the reduced-motion preference: never autoplay video for users who ask for it. -->
     <script>
-        (function initVideoPlayOverlays() {
-            // Prevent double-initialization
-            if (window.__videoPlayOverlaysInitialized) return;
-            window.__videoPlayOverlaysInitialized = true;
-
-            const videos = document.querySelectorAll('video[data-play-overlay]');
-            if (!videos.length) return;
-
-            videos.forEach(function(video) {
-                // Remove autoplay to ensure video doesn't start on page load
-                video.removeAttribute('autoplay');
-
-                // Create container wrapper
-                const container = document.createElement('div');
-                container.className = 'video-overlay-container';
-
-                // Insert container before video, then move video inside
-                video.parentNode.insertBefore(container, video);
-                container.appendChild(video);
-
-                // Create overlay button
-                const overlay = document.createElement('div');
-                overlay.className = 'video-play-overlay';
-                overlay.setAttribute('tabindex', '0');
-                overlay.setAttribute('role', 'button');
-                overlay.setAttribute('aria-label', 'Play video');
-
-                // Create play icon (CSS-styled circle + triangle)
-                const playIcon = document.createElement('div');
-                playIcon.className = 'play-icon';
-                overlay.appendChild(playIcon);
-
-                // Insert overlay into container
-                container.appendChild(overlay);
-
-                // Activation handler: play video, hide overlay, show controls
-                function activateVideo() {
-                    video.play();
-                    overlay.classList.add('hidden');
-                    video.controls = true;
-                }
-
-                // Click handler
-                overlay.addEventListener('click', activateVideo);
-
-                // Keyboard handler (Enter or Space)
-                overlay.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        activateVideo();
+        (function respectReducedMotion() {
+            var query = window.matchMedia('(prefers-reduced-motion: reduce)');
+            function apply() {
+                document.querySelectorAll('video').forEach(function (video) {
+                    if (query.matches) {
+                        video.removeAttribute('autoplay');
+                        video.pause();
+                        video.controls = true;
                     }
                 });
-
-                // When video ends, show overlay again for replay
-                video.addEventListener('ended', function() {
-                    overlay.classList.remove('hidden');
-                });
-            });
+            }
+            apply();
+            if (query.addEventListener) {
+                query.addEventListener('change', apply);
+            }
         })();
     </script>
 </body>
